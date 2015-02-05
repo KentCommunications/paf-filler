@@ -1,0 +1,26 @@
+language: java
+
+jdk:
+  - oraclejdk8
+
+env:
+  global:
+   # The next declaration is the encrypted COVERITY_SCAN_TOKEN, created
+   #   via the "travis encrypt" command using the project repo's public key
+   - secure: "aLsg0msv/uqKEbTpMwWv4KQA1nRPHYgvdoJOxtkuAfBdaXLwCDntCZ5I1daEnqQR3RzUcgPe62Gs7GnwJVclDMO3g+yXGceHVlaiW9Beo12/gibZ+IQBRI0o4gAU1vGE/nptqn/6bszjHCySRgltQHyYA7Ikih+ytM1lG8ZR2lU="
+
+
+before_install:
+  - chmod +x gradlew
+
+after_success:
+  - ./gradlew jacocoTestReport coveralls
+
+addons:
+  coverity_scan:
+    project:
+      name: "KyleChamberlin/paf-filler"
+      description: "Testing coverity scan... build submitted from Travis"
+    notification_email: kylechamberlin@project20million.org
+    build_command:   "./gradlew clean assemble"
+    branch_pattern: coverity_scan
