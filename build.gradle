@@ -1,0 +1,56 @@
+plugins {
+  id 'java'
+  id 'checkstyle'
+  id 'jacoco'
+  id 'com.github.kt3k.coveralls' version '2.0.1x'
+}
+
+repositories {
+  mavenCentral()
+}
+
+configurations {
+  compile
+  runtime
+  axisGenAntTask
+}
+
+dependencies {
+  compile 'com.itextpdf:itextpdf:5.+',
+          'axis:axis:1.4'
+
+  axisGenAntTask 'axis:axis-ant:1.4',
+                 'axis:axis:1.4',
+                 'javax.mail:mail:1.+'
+
+  testCompile 'junit:junit:4.11'
+
+  checkstyle 'com.puppycrawl.tools:checkstyle:6.+'
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.2.1'
+}
+
+task genWsdlClasses() {
+  ant.taskdef(
+    name: 'genClassesFromWSDL',
+    classname: 'org.apache.axis.tools.ant.wsdl.Wsdl2javaAntTask',
+    classpath: configurations.axisGenAntTask.asPath
+  )
+  ant.genClassesFromWSDL(
+    url: 'https://productwebintegrations.bccsoftware.com/WebServices/PafSvc.svc?wsdl',
+    output: 'src/main/java'
+  )
+}
+
+jacocoTestReport.doFirst {
+  classDirectories = files('build/classes/main/com/kentcommunications')
+}
+
+jacocoTestReport {
+  reports {
+    xml.enabled = true
+    html.enabled = true
+  }
+}
