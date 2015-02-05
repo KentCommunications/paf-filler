@@ -1,8 +1,8 @@
 PAF form filler
 ================
 
-[![Build status](https://travis-ci.org/KyleChamberlin/paf-filler.svg)](https://travis-ci.org/KyleChamberlin/paf-filler)
-[![Coverage Status](https://img.shields.io/coveralls/KyleChamberlin/paf-filler.svg)](https://coveralls.io/r/KyleChamberlin/paf-filler?branch=master)
+[![Build status](https://travis-ci.org/KentCommunications/paf-filler.svg)](https://travis-ci.org/KentCommunications/paf-filler)
+[![Coverage Status](https://img.shields.io/coveralls/KentCommunications/paf-filler.svg)](https://coveralls.io/r/KentCommunications/paf-filler?branch=master)
 [![Coverity Scan Status](https://scan.coverity.com/projects/3553/badge.svg)](https://scan.coverity.com/projects/3553)
 
 
