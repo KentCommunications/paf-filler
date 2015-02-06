@@ -1,0 +1,21 @@
+language: java
+jdk:
+- oraclejdk8
+env:
+  global:
+  - secure: aLsg0msv/uqKEbTpMwWv4KQA1nRPHYgvdoJOxtkuAfBdaXLwCDntCZ5I1daEnqQR3RzUcgPe62Gs7GnwJVclDMO3g+yXGceHVlaiW9Beo12/gibZ+IQBRI0o4gAU1vGE/nptqn/6bszjHCySRgltQHyYA7Ikih+ytM1lG8ZR2lU=
+  - secure: jaCceu7DiEZrLzdcjQRZ0cvCapJXFXu9MbdZM8k37LWQSApYFM/WkPhEG2QA1BayewrvBm3gvKU4zMjrQIgcMD5o0exlDjBbojtwROWbncng7/LUdNxchUcXClvMM0JO83TuAZeHpiPI65EYmHYchFg8Y6SyEwiexmnHa5BvS8E=
+  - secure: d6BmVvf/vq1ebDYE7Nm6a1oyIippHFB5M5Cv5vq20R+C8S54BKnJESqAEksBpFBS/mgb6vgpFLqpO5nvHkvt45EpBZAGeekUfmtMaMH94qZUGBa+hMltK8EdAeMlVaA9rWTKVKV1N47nruwfat6hr4niYkm8ux/d+u6OmFkQRl4=
+  - secure: fZ5NvOK7ef/oy3upsWn31UUZYEoEchmbmEDmE1UQjIAftyTgco8FvHUBynij+0vtiSgDtJU8QjNJPYGcVdBmrpvdlcq3KNlX1/LyL7P1pWBKl43ijuLGsHP3R55mgF9CyEea/WmfsXGyY1j8yugk0o4BycyjOkpPM8EWQsla5HY=
+before_install:
+- chmod +x gradlew
+after_success:
+- "./gradlew jacocoTestReport coveralls"
+addons:
+  coverity_scan:
+    project:
+      name: KyleChamberlin/paf-filler
+      description: Coverity Scan, from travis build. 
+    notification_email: kylechamberlin@project20million.org
+    build_command: "./gradlew clean assemble"
+    branch_pattern: coverity_scan
