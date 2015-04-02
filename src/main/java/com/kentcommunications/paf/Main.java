@@ -35,19 +35,18 @@ public class Main {
 
   public static HashMap<String, String> fields;
 
+  private static final String BCC_API_KEY = System.getenv("BCC_API_KEY");
+  private static final String BCC_USERNAME = System.getenv("BCC_USERNAME");
+  private static final String BCC_PASSWORD = System.getenv("BCC_PASSWORD");
+
   public static void main(String[] args) throws Exception {
-
-    final String BCC_API_KEY = System.getenv("BCC_API_KEY");
-    final String BCC_USERNAME = System.getenv("BCC_USERNAME");
-    final String BCC_PASSWORD = System.getenv("BCC_PASSWORD");
-
 
     PafSvcLocator locator = new PafSvcLocator();
     IPafSvc iPafSvc = locator.getBasicHttpBinding_IPafSvc();
 
     PafSvcTPafs_GetList_SimpleResult getListSimpleResult = iPafSvc.pafs_GetList_Simple(
         BCC_API_KEY, BCC_USERNAME, BCC_PASSWORD, 9616, "",
-        new GregorianCalendar(2014, 11, 1),  new GregorianCalendar(2015, 2, 1), "", "",
+        new GregorianCalendar(2015, 0, 1),  new GregorianCalendar(2015, 3, 1), "", "",
         "", 1, 256, "vchCompanyName", PafSvcESortDirections.Asc, "");
 
     PafSvcTPafs_GetList_SimpleRecord[] records = getListSimpleResult.getRecords();

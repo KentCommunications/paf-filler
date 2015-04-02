@@ -49,6 +49,16 @@ this should have output which looks similar to this:
 
 If you get an error, your JDK is probably incorrectly configured.
 
+#### System Setup
+
+In order for this program to work, it relies on a handful of environment variables
+
+    BCC_API_KEY
+	BCC_USERNAME
+	BCC_PASSWORD
+	
+please define these variables for your needs prior to running the program.
+
 #### Testing
 
 Lastly, we need to make sure the test suite runs as expected. we use gradle here too, just run:
